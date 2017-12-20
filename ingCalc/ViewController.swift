@@ -295,7 +295,7 @@ class ViewController: UIViewController
             apCat3.play()
 
         case "33333333333333333333":
-            let cat = Int(arc4random()) % 3
+            let cat = Int(arc4random()) % 5
             switch cat {
             case 0:
                 let text = """
@@ -307,9 +307,24 @@ class ViewController: UIViewController
             case 1:
                 let text = """
                 If you yell at a cat, you're the one who is making a fool of yourself.
-                猫に怒鳴るという行為は、自分で自分を笑い者にしているようなものだ。.
+                猫に怒鳴るという行為は、自分で自分を笑い者にしているようなものだ。
                 """
                 alert1(s_title: "Author Unknown", s_message: text)
+                
+            case 2:
+                let text = """
+                There are few things in life more heart warming than to be welcomed by a cat.
+                ネコに迎え入れられることより心が暖まることは、人生にはそうない。
+                """
+                alert1(s_title: "Tay Hohoff", s_message: text)
+           
+            case 3:
+                let text = """
+                A cat has absolute emotional honesty: human beings, for one reason or another, may hide their feelings, but a cat does not.
+                猫は絶対的な正直さを持っている。
+                人間は何かしらの理由で感情を隠すが、猫はそれがない。
+                """
+                alert1(s_title: "Ernest Hemingway", s_message: text)
                 
             default:
                 let text = """

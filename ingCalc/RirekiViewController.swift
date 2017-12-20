@@ -9,18 +9,21 @@
 import UIKit
 import ActionCell           // アクションセル
 import CoreGraphics
+import GoogleMobileAds
 
 let tableHeight:CGFloat = 55
 
 class RirekiViewController: UIViewController
     ,UITableViewDelegate
     ,UITableViewDataSource
+    ,GADBannerViewDelegate
 {
     
     @IBOutlet weak var myTableView: UITableView!
     var rirekids:[NSDictionary] = []
     var myIngCoreData:ingCoreData = ingCoreData()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red:0.96, green:0.5, blue:0, alpha:1)
@@ -31,6 +34,9 @@ class RirekiViewController: UIViewController
         myTableView.dataSource = self
         myTableView.delegate   = self
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cellta")
+        
+        // Admob
+        showAdBanner()
         
     }
     
@@ -205,7 +211,56 @@ class RirekiViewController: UIViewController
         })
     
     }
+
     
+    //================================
+    // Admob
+    //================================
+    //広告を表示するメソッド
+    func showAdBanner() {
+        //バナー用のビューを作成
+        //  kGADAdSizeBannerは決まっているサイズ
+        var admobView = GADBannerView()
+        admobView = GADBannerView(adSize: kGADAdSizeBanner)
+        
+        //バナーを下に配置
+        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - admobView.frame.height)
+        
+        //バナーの横幅をデバイスと合わせる
+        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
+        admobView.adUnitID = AdMobID
+        admobView.rootViewController = self
+        
+        //各種設定
+        admobView.adUnitID = AdMobID
+        admobView.delegate = self
+        admobView.rootViewController = self
+        
+        //広告のリクエスト
+        //リクエストオブジェクトを出して広告をもらってくる
+        let admobRequest = GADRequest()
+        
+        
+        //テストパターンによって設定を変える
+        if Constants.AdmobTest {
+            if Constants.SimulatorTest {
+                admobRequest.testDevices = [kGADSimulatorID]
+            }
+            else {
+                admobRequest.testDevices = [TEST_DEVICE_ID]
+            }
+        }
+        
+        //リクエストのロード
+        admobView.load(admobRequest)
+        
+        //バナーを画面に追加
+        self.view.addSubview(admobView)
+        
+        
+        
+        
+    }
     
 
 }
@@ -249,6 +304,9 @@ extension RirekiViewController: ActionCellDelegate {
         
         
     }
+    
+
+
 }
 
 
@@ -307,5 +365,6 @@ class CustomTableViewCell: UITableViewCell {
         UIGraphicsEndImageContext()
         return image!
     }
+    
 }
 

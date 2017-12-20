@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B20B2B001FD850F6005BE385 /* cat2.mp3 */; };
 		B214A3871FD1CAAE0072714A /* pictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B214A3861FD1CAAE0072714A /* pictureViewController.swift */; };
+		B21801611FE9DA8A00B98DB8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801601FE9DA8500B98DB8 /* AVFoundation.framework */; };
+		B21801621FE9DAF200B98DB8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218015F1FE9DA4200B98DB8 /* AudioToolbox.framework */; };
+		B21801641FE9DB0200B98DB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801631FE9DAFD00B98DB8 /* CoreGraphics.framework */; };
+		B21801661FE9DB0E00B98DB8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801651FE9DB0A00B98DB8 /* CoreTelephony.framework */; };
+		B21801681FE9DB1B00B98DB8 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801671FE9DB1500B98DB8 /* EventKit.framework */; };
+		B218016A1FE9DB2500B98DB8 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801691FE9DB2000B98DB8 /* EventKitUI.framework */; };
+		B218016C1FE9DB4E00B98DB8 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */; };
+		B218016E1FE9DB5F00B98DB8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016D1FE9DB5900B98DB8 /* MessageUI.framework */; };
+		B21801701FE9DB6E00B98DB8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016F1FE9DB6900B98DB8 /* StoreKit.framework */; };
+		B21801721FE9DB7900B98DB8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801711FE9DB7400B98DB8 /* SystemConfiguration.framework */; };
 		B21A39521FE20252000BCD05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B21A39541FE20252000BCD05 /* InfoPlist.strings */; };
 		B22706321FCCFD3600855257 /* ingCalc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */; };
 		B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */; };
@@ -66,6 +76,16 @@
 /* Begin PBXFileReference section */
 		B20B2B001FD850F6005BE385 /* cat2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cat2.mp3; sourceTree = "<group>"; };
 		B214A3861FD1CAAE0072714A /* pictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pictureViewController.swift; sourceTree = "<group>"; };
+		B218015F1FE9DA4200B98DB8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B21801601FE9DA8500B98DB8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B21801631FE9DAFD00B98DB8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B21801651FE9DB0A00B98DB8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B21801671FE9DB1500B98DB8 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		B21801691FE9DB2000B98DB8 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		B218016D1FE9DB5900B98DB8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B218016F1FE9DB6900B98DB8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B21801711FE9DB7400B98DB8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B21A394F1FE1FC49000BCD05 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		B21A39531FE20252000BCD05 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B22706311FCCFD3600855257 /* ingCalc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ingCalc.xcdatamodel; sourceTree = "<group>"; };
@@ -101,6 +121,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21801721FE9DB7900B98DB8 /* SystemConfiguration.framework in Frameworks */,
+				B21801701FE9DB6E00B98DB8 /* StoreKit.framework in Frameworks */,
+				B218016E1FE9DB5F00B98DB8 /* MessageUI.framework in Frameworks */,
+				B218016A1FE9DB2500B98DB8 /* EventKitUI.framework in Frameworks */,
+				B21801681FE9DB1B00B98DB8 /* EventKit.framework in Frameworks */,
+				B218016C1FE9DB4E00B98DB8 /* GoogleMobileAds.framework in Frameworks */,
+				B21801661FE9DB0E00B98DB8 /* CoreTelephony.framework in Frameworks */,
+				B21801641FE9DB0200B98DB8 /* CoreGraphics.framework in Frameworks */,
+				B21801621FE9DAF200B98DB8 /* AudioToolbox.framework in Frameworks */,
+				B21801611FE9DA8A00B98DB8 /* AVFoundation.framework in Frameworks */,
 				B24057861FC89517007AB4AE /* CalculatorKeyboard.framework in Frameworks */,
 				B24057891FC89520007AB4AE /* CalculatorKeyboard.framework in Frameworks */,
 				B2B67EF61FC87A340086134C /* ActionCell.framework in Frameworks */,
@@ -127,6 +157,7 @@
 		B2F152931FBC9EFF00FD9030 = {
 			isa = PBXGroup;
 			children = (
+				B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */,
 				B24057881FC89520007AB4AE /* CalculatorKeyboard.framework */,
 				B2F1529E1FBC9EFF00FD9030 /* ingCalc */,
 				B2F152B31FBC9EFF00FD9030 /* ingCalcTests */,
@@ -191,6 +222,15 @@
 		B2F153131FBD46B300FD9030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B21801711FE9DB7400B98DB8 /* SystemConfiguration.framework */,
+				B218016F1FE9DB6900B98DB8 /* StoreKit.framework */,
+				B218016D1FE9DB5900B98DB8 /* MessageUI.framework */,
+				B21801691FE9DB2000B98DB8 /* EventKitUI.framework */,
+				B21801671FE9DB1500B98DB8 /* EventKit.framework */,
+				B21801651FE9DB0A00B98DB8 /* CoreTelephony.framework */,
+				B21801631FE9DAFD00B98DB8 /* CoreGraphics.framework */,
+				B21801601FE9DA8500B98DB8 /* AVFoundation.framework */,
+				B218015F1FE9DA4200B98DB8 /* AudioToolbox.framework */,
 				B24057871FC89517007AB4AE /* CalculatorKeyboard.framework */,
 				B28329051FC901FE007EAB87 /* CalculatorKeyboard.framework */,
 				B2B67EF51FC87A340086134C /* ActionCell.framework */,
@@ -209,6 +249,7 @@
 				B2F152991FBC9EFF00FD9030 /* Frameworks */,
 				B2F1529A1FBC9EFF00FD9030 /* Resources */,
 				B2FFD30F1FC1CCE90008DBF1 /* CopyFiles */,
+				B21801731FE9DDFF00B98DB8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,6 +373,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B21801731FE9DDFF00B98DB8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ActionCell.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B2F152981FBC9EFF00FD9030 /* Sources */ = {
@@ -519,6 +577,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
@@ -539,6 +598,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ingCalc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds      // Admob
 
 class pictureViewController: UIViewController
     ,UIScrollViewDelegate
+    ,GADBannerViewDelegate  // Admob
 {
 
     var passedIndex:Int = -1
@@ -31,7 +33,9 @@ class pictureViewController: UIViewController
         myNavigationBar.titleTextAttributes
             = [NSAttributedStringKey.font: UIFont(name: "Menlo", size: 16)!]
         
-
+        // Admob
+        showAdBanner()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -257,7 +261,55 @@ class pictureViewController: UIViewController
         // ズームのために要指定
         return detailImageView
     }
-    
+
+    //================================
+    // Admob
+    //================================
+    //広告を表示するメソッド
+    func showAdBanner() {
+        //バナー用のビューを作成
+        //  kGADAdSizeBannerは決まっているサイズ
+        var admobView = GADBannerView()
+        admobView = GADBannerView(adSize: kGADAdSizeBanner)
+        
+        //バナーを下に配置
+        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - admobView.frame.height)
+        
+        //バナーの横幅をデバイスと合わせる
+        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
+        admobView.adUnitID = AdMobID
+        admobView.rootViewController = self
+        
+        //各種設定
+        admobView.adUnitID = AdMobID
+        admobView.delegate = self
+        admobView.rootViewController = self
+        
+        //広告のリクエスト
+        //リクエストオブジェクトを出して広告をもらってくる
+        let admobRequest = GADRequest()
+        
+        
+        //テストパターンによって設定を変える
+        if Constants.AdmobTest {
+            if Constants.SimulatorTest {
+                admobRequest.testDevices = [kGADSimulatorID]
+            }
+            else {
+                admobRequest.testDevices = [TEST_DEVICE_ID]
+            }
+        }
+        
+        //リクエストのロード
+        admobView.load(admobRequest)
+        
+        //バナーを画面に追加
+        self.view.addSubview(admobView)
+        
+        
+        
+        
+    }
     
     
     override func didReceiveMemoryWarning() {
