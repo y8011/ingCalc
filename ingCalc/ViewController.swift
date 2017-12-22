@@ -530,7 +530,7 @@ class ViewController: UIViewController
         
         imageViewSetting()
         myScrollView.maximumZoomScale = 4.0
-        myScrollView.minimumZoomScale = 1.0
+        myScrollView.minimumZoomScale = 0.8
         
         myScrollView.delegate = self
         myScrollView.addSubview(displayImageView)
@@ -541,7 +541,7 @@ class ViewController: UIViewController
     
     func imageViewSetting() {
         if Constants.DEBUG == true {
-            print("initScrollImage")
+            print(#function)
         }
         if let size = displayImageView.image?.size {
             print(size)
@@ -549,9 +549,7 @@ class ViewController: UIViewController
             let wrate = myScrollView.frame.width / size.width
             let hrate = myScrollView.frame.height / size.height
             var rate = min(wrate,hrate)
-            if onetime == false {
                 rate = wrate
-            }
             if Constants.DEBUG == true {
                 print("w:r=\(wrate):\(hrate) -> \(rate)")
             }
