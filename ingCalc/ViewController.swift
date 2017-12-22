@@ -543,18 +543,26 @@ class ViewController: UIViewController
         if Constants.DEBUG == true {
             print(#function)
         }
+        //初期化
+        myScrollView.zoomScale = 1
+        
         if let size = displayImageView.image?.size {
             print(size)
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = myScrollView.frame.width / size.width
             let hrate = myScrollView.frame.height / size.height
             var rate = min(wrate,hrate)
+            if onetime == false {
                 rate = wrate
+            }
             if Constants.DEBUG == true {
                 print("w:r=\(wrate):\(hrate) -> \(rate)")
             }
             
-            displayImageView.frame.size = CGSize(width: size.width * rate , height: size.height * rate)
+            let newImageWidth = size.width * rate
+            displayImageView.frame.size = CGSize(width: newImageWidth , height: size.height * rate)
+            
+            
             displayImageView.frame.origin = CGPoint(x: 0.0, y: 0.0)
 
             // contentSizeははみ出すサイズなので、画像サイズに設定
@@ -562,8 +570,10 @@ class ViewController: UIViewController
 
             
             if Constants.DEBUG == true {
+                print(displayImageView.frame)
                 print(myScrollView.contentSize)
-                print((displayImageView.image?.size)!)
+                print(myScrollView.frame)
+                print(myScrollView.zoomScale)
             }
 
         }
