@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ActionCell           // アクションセル
+//  import ActionCell           // アクションセル
 import CoreGraphics
 import GoogleMobileAds
 
@@ -265,7 +265,7 @@ class RirekiViewController: UIViewController
 
 }
 
-
+// MARK:- ActionCell用
 extension RirekiViewController: ActionCellDelegate {
     
     var tableView: UITableView! {
@@ -311,7 +311,6 @@ extension RirekiViewController: ActionCellDelegate {
 
 
 
-// ActionCell用
 class CustomTableViewCell: UITableViewCell {
     
     var button: UIButton!

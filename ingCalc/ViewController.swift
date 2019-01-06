@@ -9,7 +9,7 @@
 // fontとのバランスを考えると横長のアイテムは↑のように考える方が良い
 
 import UIKit
-import CalculatorKeyboard   // 計算機用
+//import CalculatorKeyboard   // 計算機用
 import Photos               // 写真用
 import CoreData
 import AVFoundation
@@ -59,7 +59,7 @@ class ViewController: UIViewController
     //===============================
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
@@ -72,19 +72,19 @@ class ViewController: UIViewController
         self.makeSound3("cat2.mp3")
         
         switch self.view.frame.size.height {
-        case 812 :
+        case 812..<1000 :
             iphoneType = "X"
 //        case 736:
 //            iphoneType = "8plus"
         case 568 :
             iphoneType = "SE"
         default:
-            if( UIDevice.current.userInterfaceIdiom == .pad) {
-                iphoneType = "iPad"
-            }
-            else {
-                iphoneType = "iPhone"
-            }
+                if( UIDevice.current.userInterfaceIdiom == .pad) {
+                    iphoneType = "iPad"
+                }
+                else {
+                    iphoneType = "iPhone"
+                }
 
         }
         widthOfScreen = self.view.frame.size.width
@@ -121,7 +121,7 @@ class ViewController: UIViewController
         } else {
             //NSLayoutConstraint.activate([safeABeqMSVB,safeABeqIMVB])
             NSLayoutConstraint.activate([safeABeqMSVB])
-        NSLayoutConstraint.deactivate([safeABeqMSVBforSE])
+            NSLayoutConstraint.deactivate([safeABeqMSVBforSE])
         }
         
     }
@@ -131,8 +131,8 @@ class ViewController: UIViewController
     // 計算機
     //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType: Int) {
-        inputText.text = value
-        
+
+        inputText.text = value.withComma()
 
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
@@ -218,7 +218,6 @@ class ViewController: UIViewController
             hideOpeLabel()
             
             if Constants.DEBUG == true {
-                print("けされたぁ")
                 let myIngCoreData:ingCoreData = ingCoreData()
                 let myIngLocalImage:ingLocalImage = ingLocalImage()
                 
@@ -383,6 +382,7 @@ class ViewController: UIViewController
         
         if sender.state == UIGestureRecognizerState.began{
             return
+            
         }
         
         let neko = Int(arc4random()) % 10
@@ -397,9 +397,28 @@ class ViewController: UIViewController
         showAlbum()
     }
     
-    
 
-    
+//    
+//    @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
+//        print(#function,sender.numberOfTapsRequired)
+//    }
+//    
+//    @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+//        print(#function,sender.direction,sender.numberOfTouchesRequired)
+//        if #available(iOS 10.0, *), let generator = feedbackGenerator as? UIImpactFeedbackGenerator {
+//            generator.impactOccurred()
+//        }
+//    }
+//    
+//    private let feedbackGenerator: Any? = {
+//        if #available(iOS 10.0, *) {
+//            let generator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+//            generator.prepare()
+//            return generator
+//        } else {
+//            return nil
+//        }
+//    }()
     //===============================
     // カメラボタン
     //===============================

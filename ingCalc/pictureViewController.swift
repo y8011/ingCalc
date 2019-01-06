@@ -47,7 +47,7 @@ class pictureViewController: UIViewController
         let myIngCoreData:ingCoreData = ingCoreData()
         let dic = myIngCoreData.readRireki(r_id: passedIndex)
         
-        myTextView.text = dic["resultText"] as! String
+        myTextView.text = dic["resultText"] as? String
         //日付を文字列に変換
         let df = DateFormatter()
         //ローカライズ

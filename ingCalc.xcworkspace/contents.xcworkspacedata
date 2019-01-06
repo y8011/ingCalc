@@ -8,9 +8,9 @@
       location = "group:Rireki+CoreDataProperties.swift">
    </FileRef>
    <FileRef
-      location = "group:CalculatorKeyboard-master/CalculatorKeyboard.xcodeproj">
+      location = "group:ingCalc.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ingCalc.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
