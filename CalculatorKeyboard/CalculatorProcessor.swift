@@ -146,7 +146,7 @@ class CalculatorProcessor {
     
     // 誤差が出ていたので、Decimalに変更した 2019.1.6
     fileprivate func formatValue(_ value: Decimal) -> String {
-        var raw = "\(value)"
+        let raw = "\(value)"
 //        if automaticDecimal {
 //            raw = String(format: "%.2f", value)
 //            return raw

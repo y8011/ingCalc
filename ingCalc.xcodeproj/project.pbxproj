@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4D3F36F6C91C89ADCA1558BE /* Pods_ingCalc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6B63772505949B22F552BAA /* Pods_ingCalc.framework */; };
+		5814550521E2560A00F2E076 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5814550421E2560A00F2E076 /* GoogleService-Info.plist */; };
+		5814550921E25DB000F2E076 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5814550B21E25DB000F2E076 /* Localizable.strings */; };
 		58A8DA9421E0815D0098E6A8 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A8DA9321E0815D0098E6A8 /* ActionCell.swift */; };
 		58A8DA9621E081720098E6A8 /* ActionControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A8DA9521E081710098E6A8 /* ActionControl.swift */; };
 		58A8DA9821E081770098E6A8 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A8DA9721E081770098E6A8 /* UITableViewCell+Extension.swift */; };
@@ -23,7 +25,6 @@
 		B21801661FE9DB0E00B98DB8 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801651FE9DB0A00B98DB8 /* CoreTelephony.framework */; };
 		B21801681FE9DB1B00B98DB8 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801671FE9DB1500B98DB8 /* EventKit.framework */; };
 		B218016A1FE9DB2500B98DB8 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801691FE9DB2000B98DB8 /* EventKitUI.framework */; };
-		B218016C1FE9DB4E00B98DB8 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */; };
 		B218016E1FE9DB5F00B98DB8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016D1FE9DB5900B98DB8 /* MessageUI.framework */; };
 		B21801701FE9DB6E00B98DB8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B218016F1FE9DB6900B98DB8 /* StoreKit.framework */; };
 		B21801721FE9DB7900B98DB8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B21801711FE9DB7400B98DB8 /* SystemConfiguration.framework */; };
@@ -44,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5814550421E2560A00F2E076 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5814550A21E25DB000F2E076 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5814550D21E25DD300F2E076 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		58A8DA9321E0815D0098E6A8 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		58A8DA9521E081710098E6A8 /* ActionControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionControl.swift; sourceTree = "<group>"; };
 		58A8DA9721E081770098E6A8 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
@@ -61,7 +65,6 @@
 		B21801651FE9DB0A00B98DB8 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B21801671FE9DB1500B98DB8 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B21801691FE9DB2000B98DB8 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		B218016D1FE9DB5900B98DB8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B218016F1FE9DB6900B98DB8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B21801711FE9DB7400B98DB8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -96,7 +99,6 @@
 				B218016E1FE9DB5F00B98DB8 /* MessageUI.framework in Frameworks */,
 				B218016A1FE9DB2500B98DB8 /* EventKitUI.framework in Frameworks */,
 				B21801681FE9DB1B00B98DB8 /* EventKit.framework in Frameworks */,
-				B218016C1FE9DB4E00B98DB8 /* GoogleMobileAds.framework in Frameworks */,
 				B21801661FE9DB0E00B98DB8 /* CoreTelephony.framework in Frameworks */,
 				B21801641FE9DB0200B98DB8 /* CoreGraphics.framework in Frameworks */,
 				B21801621FE9DAF200B98DB8 /* AudioToolbox.framework in Frameworks */,
@@ -108,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5814550621E257BA00F2E076 /* ActionCell */ = {
+			isa = PBXGroup;
+			children = (
+				58A8DA9321E0815D0098E6A8 /* ActionCell.swift */,
+				58A8DA9521E081710098E6A8 /* ActionControl.swift */,
+				58A8DA9721E081770098E6A8 /* UITableViewCell+Extension.swift */,
+			);
+			path = ActionCell;
+			sourceTree = "<group>";
+		};
 		58F1ACE221E1A98300B2F00C /* CalculatorKeyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				58F1ACE221E1A98300B2F00C /* CalculatorKeyboard */,
-				B218016B1FE9DB4D00B98DB8 /* GoogleMobileAds.framework */,
 				B2F1529E1FBC9EFF00FD9030 /* ingCalc */,
 				B2F1529D1FBC9EFF00FD9030 /* Products */,
 				B2F153131FBD46B300FD9030 /* Frameworks */,
@@ -165,12 +176,12 @@
 				B27698821FD6302000A83AE4 /* cat-meowing-2.mp3 */,
 				B20B2B001FD850F6005BE385 /* cat2.mp3 */,
 				B2FFD30C1FC1C6620008DBF1 /* LaunchScreen.storyboard */,
+				5814550421E2560A00F2E076 /* GoogleService-Info.plist */,
 				B22706301FCCFD3600855257 /* ingCalc.xcdatamodeld */,
 				B2F152AB1FBC9EFF00FD9030 /* Info.plist */,
 				B21A39541FE20252000BCD05 /* InfoPlist.strings */,
-				58A8DA9321E0815D0098E6A8 /* ActionCell.swift */,
-				58A8DA9521E081710098E6A8 /* ActionControl.swift */,
-				58A8DA9721E081770098E6A8 /* UITableViewCell+Extension.swift */,
+				5814550B21E25DB000F2E076 /* Localizable.strings */,
+				5814550621E257BA00F2E076 /* ActionCell */,
 			);
 			path = ingCalc;
 			sourceTree = "<group>";
@@ -204,7 +215,7 @@
 				B2F152991FBC9EFF00FD9030 /* Frameworks */,
 				B2F1529A1FBC9EFF00FD9030 /* Resources */,
 				B21801731FE9DDFF00B98DB8 /* ShellScript */,
-				C96659414AEFB9F4206194D0 /* [CP] Embed Pods Frameworks */,
+				46E85DD77F69870E6FBBD207 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -227,6 +238,7 @@
 				TargetAttributes = {
 					B2F1529B1FBC9EFF00FD9030 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -255,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58F1ACE721E1AA5700B2F00C /* Images.xcassets in Resources */,
+				5814550921E25DB000F2E076 /* Localizable.strings in Resources */,
 				B27698811FD62F1F00A83AE4 /* cat1b.mp3 in Resources */,
 				B21A39521FE20252000BCD05 /* InfoPlist.strings in Resources */,
 				B27698831FD6302100A83AE4 /* cat-meowing-2.mp3 in Resources */,
@@ -262,6 +275,7 @@
 				B20B2B011FD850F7005BE385 /* cat2.mp3 in Resources */,
 				B2FFD30D1FC1C6620008DBF1 /* LaunchScreen.storyboard in Resources */,
 				B2F152A71FBC9EFF00FD9030 /* Assets.xcassets in Resources */,
+				5814550521E2560A00F2E076 /* GoogleService-Info.plist in Resources */,
 				58F1ACE921E1AA5700B2F00C /* CalculatorKeyboard.xib in Resources */,
 				B2F152A51FBC9EFF00FD9030 /* Main.storyboard in Resources */,
 			);
@@ -288,6 +302,32 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		46E85DD77F69870E6FBBD207 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ingCalc/Pods-ingCalc-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ingCalc/Pods-ingCalc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B21801731FE9DDFF00B98DB8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,28 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
-		};
-		C96659414AEFB9F4206194D0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ingCalc/Pods-ingCalc-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Antenna/Antenna.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Antenna.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ingCalc/Pods-ingCalc-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -348,6 +367,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5814550B21E25DB000F2E076 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5814550A21E25DB000F2E076 /* ja */,
+				5814550D21E25DD300F2E076 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B21A39541FE20252000BCD05 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -497,7 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -518,7 +546,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yukao.ingCalc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

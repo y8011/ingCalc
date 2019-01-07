@@ -100,7 +100,7 @@ open class CalculatorKeyboard: UIView {
     fileprivate func loadXib() {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         adjustLayout()
         addSubview(view)
     }
@@ -121,7 +121,7 @@ open class CalculatorKeyboard: UIView {
         for i in 1...CalculatorKey.decimal.rawValue {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = numbersBackgroundColor
-                button.setTitleColor(numbersTextColor, for: UIControlState())
+                button.setTitleColor(numbersTextColor, for: UIControl.State())
                 //okayu
                 button.titleLabel?.font.withSize(20.0)
             }
@@ -130,14 +130,14 @@ open class CalculatorKeyboard: UIView {
         for i in CalculatorKey.clear.rawValue...CalculatorKey.add.rawValue {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = operationsBackgroundColor
-                button.setTitleColor(operationsTextColor, for: UIControlState())
+                button.setTitleColor(operationsTextColor, for: UIControl.State())
                 button.tintColor = operationsTextColor
             }
         }
         
         if let button = self.view.viewWithTag(CalculatorKey.equal.rawValue) as? UIButton {
             button.tintColor = equalBackgroundColor
-            button.setTitleColor(equalTextColor, for: UIControlState())
+            button.setTitleColor(equalTextColor, for: UIControl.State())
         }
     }
     

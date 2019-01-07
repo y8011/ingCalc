@@ -21,7 +21,7 @@ class ingLocalImage {
         let dataUrl = URL.init(fileURLWithPath: documentDirectory[0], isDirectory: true) //URL型 Documentpath
         
         let dataPath = dataUrl.appendingPathComponent(name) //URL型 documentへのパス + ファイル名
-        let myData = UIImageJPEGRepresentation(image, 1.0)! as NSData // Data?型　→ NSData型
+        let myData = image.jpegData(compressionQuality: 1.0)! as NSData // Data?型　→ NSData型
         
         if Constants.DEBUG == true {
             print(dataPath.path)

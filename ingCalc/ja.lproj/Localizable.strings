@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  ingCalc
+
+  Created by oyuka on 2019/01/06.
+  Copyright © 2019 yuka. All rights reserved.
+*/
+
+"CameraErrorMessage" = "カメラが起動できませんでした。iPhone/iPadの設定で、SnapCalendar ＞「カメラ」をONしてください";
+"Setting" = "設定へ移動";
+"cancel"     = "やめる";

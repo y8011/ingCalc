@@ -9,6 +9,11 @@ target 'ingCalc' do
 
   # Pods for ingCalc
   #pod 'ActionCell'
-  pod "Antenna"
+  #pod "Antenna"
+  # pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
+  pod 'FontAwesome.swift'
+
 
 end

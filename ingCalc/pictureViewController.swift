@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds      // Admob
+import FontAwesome_swift
 
 class pictureViewController: UIViewController
     ,UIScrollViewDelegate
@@ -22,6 +23,8 @@ class pictureViewController: UIViewController
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myNavigationBar: UINavigationBar!
     
+    @IBOutlet weak var shareBarButton: FontAwesomeBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +34,13 @@ class pictureViewController: UIViewController
         detailImageView.isUserInteractionEnabled = true  // Gestureの許可
 
         myNavigationBar.titleTextAttributes
-            = [NSAttributedStringKey.font: UIFont(name: "Menlo", size: 16)!]
+            = [NSAttributedString.Key.font: UIFont(name: "Menlo", size: 16)!]
         
+        // Button
+//        let attributes = [NSAttributedString.Key.font: UIFont.fontAwesome(ofSize: 10, style: .brands)]
+//        shareBarButton.setTitleTextAttributes(attributes, for: .normal)
+//        shareBarButton.title = String.fontAwesomeIcon(name: .share)
+        shareBarButton.title = String.fontAwesomeIcon(name: .shareSquare)
         // Admob
         showAdBanner()
         

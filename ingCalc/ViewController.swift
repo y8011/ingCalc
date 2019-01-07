@@ -13,6 +13,7 @@ import UIKit
 import Photos               // 写真用
 import CoreData
 import AVFoundation
+import FontAwesome_swift
 
 var iphoneType:String = ""
 var widthOfScreen:CGFloat = 0
@@ -36,6 +37,9 @@ class ViewController: UIViewController
     @IBOutlet weak var divideLabel: UILabel!
 
     
+    @IBOutlet weak var cameraBarButton: FontAwesomeBarButtonItem!
+    @IBOutlet weak var historyBarButton: FontAwesomeBarButtonItem!
+    
     // 計算機
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
     var resultText:String = ""
@@ -49,7 +53,6 @@ class ViewController: UIViewController
 
     // レイアウト
     @IBOutlet weak var safeABeqMSVB: NSLayoutConstraint!
-    @IBOutlet weak var safeABeqIMVB: NSLayoutConstraint!
     
     @IBOutlet weak var safeABeqMSVBforSE: NSLayoutConstraint!
     
@@ -64,8 +67,9 @@ class ViewController: UIViewController
         displayImageView = UIImageView(image: UIImage(named: "Red-kitten.jpg"))
         displayImageView.isUserInteractionEnabled = true  // Gestureの許可
 
-
-        displayImageView.contentMode = UIViewContentMode.scaleAspectFit
+        displayImageView.contentMode = UIView.ContentMode.scaleAspectFit
+        
+        myScrollView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
         
         self.makeSound1("cat1b.mp3")
         self.makeSound2("cat-meowing-2.mp3")
@@ -92,6 +96,9 @@ class ViewController: UIViewController
         initCalc()
         
         adustConstrains()
+        
+        historyBarButton.title = String.fontAwesomeIcon(name: .history)
+        cameraBarButton.title = String.fontAwesomeIcon(name: .camera)
 
     }
 
@@ -380,7 +387,7 @@ class ViewController: UIViewController
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
         
-        if sender.state == UIGestureRecognizerState.began{
+        if sender.state == UIGestureRecognizer.State.began{
             return
             
         }
@@ -434,24 +441,59 @@ class ViewController: UIViewController
     //===============================
     func showCamera() {
         print(#function)
-        //カメラボタンが使えるかどうか判別するための情報を取得（列挙体）
-        //意味のわかる言葉に置き換え。中身はenumで数字で作ってる
-        let camera = UIImagePickerControllerSourceType.camera
 
         //カメラが使える場合　撮影モードの画面を表示
         //クラス名.メソッド名　で使えるメソッド＝型メソッド
-        if UIImagePickerController.isSourceTypeAvailable(camera) {
-            let picker = UIImagePickerController()
-            
-            //カメラモードに設定
-            picker.sourceType = camera
-            
-            //デリゲートの設定（撮影後のメソッドを感知するため）
-            picker.delegate = self
-            
-            //撮影モード画面の表示（モーダル）
-            present(picker, animated: true, completion: nil)
-            
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let status = AVCaptureDevice.authorizationStatus(for: .video)
+
+            if status == AVAuthorizationStatus.authorized
+            || status == AVAuthorizationStatus.notDetermined
+            {
+                let picker = UIImagePickerController()
+                
+                //カメラモードに設定
+                picker.sourceType = .camera
+                
+                //デリゲートの設定（撮影後のメソッドを感知するため）
+                picker.delegate = self
+                
+                //撮影モード画面の表示（モーダル）
+                present(picker, animated: true, completion: nil)
+            }
+            else {
+                let localStr = NSLocalizedString("CameraErrorMessage", comment: "") //
+                let settingStr = NSLocalizedString("Setting", comment: "")
+                
+                
+                let alert = UIAlertController(
+                    title: "Camera Error!" ,
+                    message: localStr,
+                    preferredStyle: .alert
+                )
+                
+                alert.addAction(
+                    UIAlertAction(
+                        title: NSLocalizedString("cancel", comment: ""),
+                        style: .cancel,
+                        handler: nil
+                    )
+                )
+                alert.addAction(
+                    UIAlertAction(
+                        title:settingStr ,
+                        style: .default,
+                        handler: {
+                            (action) in
+                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+
+                        })
+                )
+                
+                // アラート表示
+                present(alert, animated: true, completion: nil)
+                
+            }
             
         }
         
@@ -461,9 +503,9 @@ class ViewController: UIViewController
 
     func showAlbum(){
         
-        let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.photoLibrary
+        let sourceType:UIImagePickerController.SourceType = UIImagePickerController.SourceType.photoLibrary
 
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
             //インスタンスの作成
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
@@ -476,7 +518,10 @@ class ViewController: UIViewController
 
 
     //カメラロールで写真を選んだ後発動
-    func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
 
         if Constants.DEBUG == true {
             print(#function)
@@ -484,9 +529,9 @@ class ViewController: UIViewController
 
         //for camera
         // UIImagePickerControllerReferenceURL はカメラロールを選択した時だけ存在するので切り分け。
-        if (info.index(forKey: UIImagePickerControllerReferenceURL) == nil) {
+        if (info.index(forKey: convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)) == nil) {
             //imageViewに撮影した写真をセットするために変数に保存する
-            let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let takenimage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
             
             //画面上のimageViewに設定
             displayImageView.image = takenimage
@@ -502,7 +547,7 @@ class ViewController: UIViewController
         }
         else {
             //for photolibrary
-            let assetURL:AnyObject = info[UIImagePickerControllerReferenceURL]! as AnyObject
+            let assetURL:AnyObject = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)]! as AnyObject
             if Constants.DEBUG == true {
                 print("didFinishPickingMediaWithInfo")
                 print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
@@ -525,7 +570,7 @@ class ViewController: UIViewController
             
             
            // display()  画質が悪くなるので削除
-            let takenimage = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let takenimage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
             
             //画面上のimageViewに設定
             displayImageView.image = takenimage
@@ -804,3 +849,13 @@ class ViewController: UIViewController
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

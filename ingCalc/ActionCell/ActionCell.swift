@@ -138,7 +138,7 @@ open class ActionCell: UIView {
         
         target.selectionStyle = .none
         target.addSubview(self)
-        target.sendSubview(toBack: self)
+        target.sendSubviewToBack(self)
         translatesAutoresizingMaskIntoConstraints = false
         target.addConstraint(NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: target, attribute: .leading, multiplier: 1, constant: 0))
         target.addConstraint(NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: target, attribute: .trailing, multiplier: 1, constant: 0))
@@ -162,7 +162,7 @@ open class ActionCell: UIView {
         #endif
         
         if isActionsheetValid(side: side) {
-            cell!.bringSubview(toFront: self)
+            cell!.bringSubviewToFront(self)
             
             contentScreenshot = UIImageView(image: screenshotImageOfView(view: cell!))
             contentScreenshot?.isUserInteractionEnabled = true
@@ -197,7 +197,7 @@ open class ActionCell: UIView {
         contentScreenshot = nil
         
         backgroundColor = UIColor.clear
-        cell!.sendSubview(toBack: self)
+        cell!.sendSubviewToBack(self)
         
         completionHandler?()
     }
@@ -573,7 +573,7 @@ open class ActionCell: UIView {
         
         switch gestureRecognizer.state {
         case .ended:
-            if gestureRecognizer.direction == UISwipeGestureRecognizerDirection.left {
+            if gestureRecognizer.direction == UISwipeGestureRecognizer.Direction.left {
                 respondToSwipe(side: .right)
             } else {
                 respondToSwipe(side: .left)
