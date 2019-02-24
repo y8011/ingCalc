@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ActionCell           // アクションセル
+//  import ActionCell           // アクションセル
 import CoreGraphics
 import GoogleMobileAds
 
@@ -23,6 +23,8 @@ class RirekiViewController: UIViewController
     var rirekids:[NSDictionary] = []
     var myIngCoreData:ingCoreData = ingCoreData()
     
+    var bannerView: GADBannerView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class RirekiViewController: UIViewController
         
         // Admob
         showAdBanner()
-        
+        admobInit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -220,52 +222,62 @@ class RirekiViewController: UIViewController
     func showAdBanner() {
         //バナー用のビューを作成
         //  kGADAdSizeBannerは決まっているサイズ
-        var admobView = GADBannerView()
-        admobView = GADBannerView(adSize: kGADAdSizeBanner)
-        
-        //バナーを下に配置
-        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - admobView.frame.height)
-        
-        //バナーの横幅をデバイスと合わせる
-        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
-        admobView.adUnitID = AdMobID
-        admobView.rootViewController = self
-        
-        //各種設定
-        admobView.adUnitID = AdMobID
-        admobView.delegate = self
-        admobView.rootViewController = self
-        
-        //広告のリクエスト
-        //リクエストオブジェクトを出して広告をもらってくる
-        let admobRequest = GADRequest()
-        
-        
-        //テストパターンによって設定を変える
-        if Constants.AdmobTest {
-            if Constants.SimulatorTest {
-                admobRequest.testDevices = [kGADSimulatorID]
-            }
-            else {
-                admobRequest.testDevices = [TEST_DEVICE_ID]
-            }
-        }
-        
-        //リクエストのロード
-        admobView.load(admobRequest)
-        
-        //バナーを画面に追加
-        self.view.addSubview(admobView)
-        
-        
-        
-        
+//        var admobView = GADBannerView()
+//        admobView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+
+        addBannerViewToView(bannerView)
     }
     
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+    
+    
+//
+//        //バナーを下に配置
+//        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - admobView.frame.height)
+//
+//        //バナーの横幅をデバイスと合わせる
+//        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
+//        admobView.adUnitID = AdMobID
+//        admobView.rootViewController = self
+//
+    
+    func admobInit() {
+        bannerView.adUnitID = AdMobID
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+    }
+
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
+    }
 
 }
 
-
+// MARK:- ActionCell用
 extension RirekiViewController: ActionCellDelegate {
     
     var tableView: UITableView! {
@@ -311,7 +323,6 @@ extension RirekiViewController: ActionCellDelegate {
 
 
 
-// ActionCell用
 class CustomTableViewCell: UITableViewCell {
     
     var button: UIButton!
@@ -319,7 +330,7 @@ class CustomTableViewCell: UITableViewCell {
     var hiddenLabelOfRid:Int = 0
     
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         button = {

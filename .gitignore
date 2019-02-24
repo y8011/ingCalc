@@ -1,2 +1,4 @@
-Xcodeで使わないファイル/
+design_contents/
 GoogleMobileAds.framework/
+Pods/
+*/xcuserdata/

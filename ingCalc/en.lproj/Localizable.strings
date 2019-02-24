@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  ingCalc
+
+  Created by oyuka on 2019/01/06.
+  Copyright © 2019 yuka. All rights reserved.
+*/
+
+"CameraErrorMessage" = "Camera is unavailable. Try to change setting of SnapCalendar.";
+"Setting" = "Go to Setting";
+"cancel"     = "cancel";

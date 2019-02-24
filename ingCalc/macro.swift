@@ -26,3 +26,29 @@ class Constants {
     static let SimulatorTest:Bool = false
     
 }
+
+extension String {
+    func withComma() -> String {
+        var value = self
+        
+        let arrayTheDecimalPoint = value.components(separatedBy: ".")
+        
+        var upperDividedNumbers : [Character] = []
+        var i = 0
+        for num in arrayTheDecimalPoint[0].reversed() {
+            upperDividedNumbers.insert(num, at: 0)
+            i += 1
+            if i % 3 == 0
+            && i != arrayTheDecimalPoint[0].count
+                {
+                upperDividedNumbers.insert(",", at: 0)            }
+        }
+        
+        value = String(upperDividedNumbers)
+        if arrayTheDecimalPoint.count == 2 {
+            value += "." + arrayTheDecimalPoint[1]
+        }
+        
+        return value
+    }
+}

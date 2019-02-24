@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+//import Antenna
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        Antenna.sharedLogger()?.addChannel(with: URL(string: "http://localhost:3000")!, method: "LOG")
+//        Antenna.sharedLogger()?.log("didFinishLaunchingWithOptions")
+
+        FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: AdMobID)
         print("didFinishLaunchingWithOptions")
         return true
     }
