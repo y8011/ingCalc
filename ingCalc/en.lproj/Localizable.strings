@@ -9,3 +9,5 @@
 "CameraErrorMessage" = "Camera is unavailable. Try to change setting of SnapCalendar.";
 "Setting" = "Go to Setting";
 "cancel"     = "cancel";
+"zeroConfirmation" = "is used by Zero. Do you want to continue?";
+

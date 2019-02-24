@@ -9,3 +9,4 @@
 "CameraErrorMessage" = "カメラが起動できませんでした。iPhone/iPadの設定で、SnapCalendar ＞「カメラ」をONしてください";
 "Setting" = "設定へ移動";
 "cancel"     = "やめる";
+"zeroConfirmation" = "：０を使って計算しようとしています。このまま続けて良いですか？";

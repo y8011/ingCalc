@@ -13,6 +13,8 @@ public var btn4cnt:Int = -1  //okayu四則演算が連続で呼ばれている�
 
 public protocol CalculatorDelegate: class {
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType:Int)
+    
+    func confirmZero(_ op:CalculatorKey?)
 }
 
 public enum CalculatorKey: Int {
@@ -165,17 +167,24 @@ open class CalculatorKeyboard: UIView {
             let output = processor.deleteLastDigit()
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case (CalculatorKey.multiply.rawValue)...(CalculatorKey.add.rawValue):
-            btn4cnt = btn4cnt + 1
+            btn4cnt += 1
             let output = processor.storeOperator(sender.tag)
             delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
         case CalculatorKey.equal.rawValue:
- 
-            let output = processor.computeFinalValue()
-            delegate?.calculator(self, didChangeValue: output, KeyType: sender.tag)
-            btn4cnt = 0  //ingCalc側の計算の都合上、delegateの後に移動
-            break
+            if processor.currentOperand == "0" {
+                delegate?.confirmZero(processor.storedOperator)
+            }
+            else {
+                finalCalc()
+            }
         default:
             break
         }
+    }
+    
+    func finalCalc() {
+        let output = processor.computeFinalValue()
+        delegate?.calculator(self, didChangeValue: output, KeyType: CalculatorKey.equal.rawValue)
+        btn4cnt = 0  //ingCalc側の計算の都合上、delegateの後に移動
     }
 }

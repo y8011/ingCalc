@@ -9,7 +9,6 @@
 // fontとのバランスを考えると横長のアイテムは↑のように考える方が良い
 
 import UIKit
-//import CalculatorKeyboard   // 計算機用
 import Photos               // 写真用
 import CoreData
 import AVFoundation
@@ -53,8 +52,7 @@ class ViewController: UIViewController
 
     // レイアウト
     @IBOutlet weak var safeABeqMSVB: NSLayoutConstraint!
-    
-    @IBOutlet weak var safeABeqMSVBforSE: NSLayoutConstraint!
+        @IBOutlet weak var safeABeqMSVBforSE: NSLayoutConstraint!
     
     
     //===============================
@@ -122,11 +120,9 @@ class ViewController: UIViewController
     //==============================
     func adustConstrains() {
         if iphoneType == "SE" { // SEの時
-           //NSLayoutConstraint.deactivate([safeABeqMSVB,safeABeqIMVB])
             NSLayoutConstraint.deactivate([safeABeqMSVB])
             NSLayoutConstraint.activate([safeABeqMSVBforSE])
         } else {
-            //NSLayoutConstraint.activate([safeABeqMSVB,safeABeqIMVB])
             NSLayoutConstraint.activate([safeABeqMSVB])
             NSLayoutConstraint.deactivate([safeABeqMSVBforSE])
         }
@@ -135,37 +131,38 @@ class ViewController: UIViewController
     
     
     //===============================
-    // 計算機
+    // MARK:計算機
     //===============================
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType: Int) {
 
         inputText.text = value.withComma()
+        inputText.fitTextToBounds()
 
         switch KeyType {
         case CalculatorKey.multiply.rawValue ... CalculatorKey.add.rawValue:
 
             if btn4cnt > 1 {
-                //operatorが連続していたら一番後ろにあるopratorの文字を削除する。そのあとで入れ直す
-                let range = resultText.index(resultText.endIndex, offsetBy: -1)..<resultText.endIndex
+                //operatorが連続していたら一番後ろにあるスペースとopratorの文字を削除する。そのあとで入れ直す
+                let range = resultText.index(resultText.endIndex, offsetBy: -3)..<resultText.endIndex
                 resultText.removeSubrange(range)
                 var ope:String  = ""
                 if KeyType == CalculatorKey.multiply.rawValue {
-                    ope = "x"
+                    ope = " × "
                     hideOpeLabel()
                     multiplyLabel.isHidden = false
                 }
                 else if KeyType == CalculatorKey.divide.rawValue {
-                    ope = "/"
+                    ope = " ÷ "
                     hideOpeLabel()
                     divideLabel.isHidden = false
                 }
                 else if KeyType == CalculatorKey.subtract.rawValue {
-                    ope = "-"
+                    ope = " - "
                     hideOpeLabel()
                     minusLabel.isHidden = false
                 }
                 else if KeyType == CalculatorKey.add.rawValue {
-                    ope = "+"
+                    ope = " + "
                     hideOpeLabel()
                     plusLabel.isHidden = false
                 }
@@ -177,23 +174,23 @@ class ViewController: UIViewController
             }
             else {
                 if KeyType == CalculatorKey.multiply.rawValue {
-                    resultText = resultText + "\(suuji)x"
+                    resultText = resultText + "\(suuji)".withComma() + " × "
                     hideOpeLabel()
                     multiplyLabel.isHidden = false
                     
                 }
                 else if KeyType == CalculatorKey.divide.rawValue {
-                    resultText = resultText + "\(suuji)/"
+                    resultText = resultText + "\(suuji)".withComma() + " ÷ "
                     hideOpeLabel()
                     divideLabel.isHidden = false
                 }
                 else if KeyType == CalculatorKey.subtract.rawValue {
-                    resultText = resultText + "\(suuji)-"
+                    resultText = resultText + "\(suuji)".withComma() + " - "
                     hideOpeLabel()
                     minusLabel.isHidden = false
                 }
                 else if KeyType == CalculatorKey.add.rawValue {
-                    resultText = resultText + "\(suuji)+"
+                    resultText = resultText + "\(suuji)".withComma() + " + "
                     hideOpeLabel()
                     plusLabel.isHidden = false
                 }
@@ -206,7 +203,7 @@ class ViewController: UIViewController
                 suuji = "0"
             }
 
-            resultText.append("\(suuji) = \(value)")
+            resultText.append("\(suuji)".withComma() + " = " + "\(value)".withComma())
           
             //履歴に追加する。
             let myIngCoreData:ingCoreData = ingCoreData()
@@ -261,6 +258,33 @@ class ViewController: UIViewController
 
     }
     
+    func confirmZero(_ op: CalculatorKey?) {
+        let localStr = NSLocalizedString("zeroConfirmation", comment: "") //
+        var opString = ""
+        if let mark = op!.mark() {
+            opString = mark
+        }
+        
+        let alert = UIAlertController(title: "" ,
+            message:  opString + " " + localStr,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(
+                title: NSLocalizedString("cancel", comment: ""),
+                style: .cancel,
+                handler: nil))
+        alert.addAction(UIAlertAction(
+                title:"OK" ,
+                style: .default,
+                handler: { (action) in
+                    self.keyboard.finalCalc()
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // 電卓keyboardのセッティング
     func initCalc() {
         var fheight:CGFloat = 300  // other
         switch iphoneType {
@@ -349,11 +373,9 @@ class ViewController: UIViewController
     }
     
     //=============================
-    // Alert
+    // MARK:Alert
     //=============================
     func alert1(s_title:String?, s_message:String){
-        
-        //部品となるアラート
         let alert = UIAlertController(
             title: s_title ,
             message: s_message,
@@ -371,8 +393,6 @@ class ViewController: UIViewController
                 handler: nil)
         )
         
-        
-        // アラート表示
         self.present(alert, animated: true, completion: {
             // アラートを自動で閉じる 非同期処理
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
@@ -383,7 +403,7 @@ class ViewController: UIViewController
     }
     
     //===============================
-    // ジェスチャー
+    // MARK:ジェスチャー
     //===============================
     @IBAction func longPressImageView(_ sender: UILongPressGestureRecognizer) {
         
@@ -405,27 +425,6 @@ class ViewController: UIViewController
     }
     
 
-//    
-//    @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
-//        print(#function,sender.numberOfTapsRequired)
-//    }
-//    
-//    @IBAction func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-//        print(#function,sender.direction,sender.numberOfTouchesRequired)
-//        if #available(iOS 10.0, *), let generator = feedbackGenerator as? UIImpactFeedbackGenerator {
-//            generator.impactOccurred()
-//        }
-//    }
-//    
-//    private let feedbackGenerator: Any? = {
-//        if #available(iOS 10.0, *) {
-//            let generator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-//            generator.prepare()
-//            return generator
-//        } else {
-//            return nil
-//        }
-//    }()
     //===============================
     // カメラボタン
     //===============================
@@ -440,10 +439,6 @@ class ViewController: UIViewController
     // カメラ
     //===============================
     func showCamera() {
-        print(#function)
-
-        //カメラが使える場合　撮影モードの画面を表示
-        //クラス名.メソッド名　で使えるメソッド＝型メソッド
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let status = AVCaptureDevice.authorizationStatus(for: .video)
 
@@ -451,21 +446,13 @@ class ViewController: UIViewController
             || status == AVAuthorizationStatus.notDetermined
             {
                 let picker = UIImagePickerController()
-                
-                //カメラモードに設定
                 picker.sourceType = .camera
-                
-                //デリゲートの設定（撮影後のメソッドを感知するため）
                 picker.delegate = self
-                
-                //撮影モード画面の表示（モーダル）
                 present(picker, animated: true, completion: nil)
             }
-            else {
+            else {   // Cameraが使えない時に設定を変えるよう促すコーション
                 let localStr = NSLocalizedString("CameraErrorMessage", comment: "") //
                 let settingStr = NSLocalizedString("Setting", comment: "")
-                
-                
                 let alert = UIAlertController(
                     title: "Camera Error!" ,
                     message: localStr,
@@ -486,11 +473,8 @@ class ViewController: UIViewController
                         handler: {
                             (action) in
                             UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
-
                         })
                 )
-                
-                // アラート表示
                 present(alert, animated: true, completion: nil)
                 
             }
@@ -500,13 +484,10 @@ class ViewController: UIViewController
     
     }
 
-
     func showAlbum(){
-        
         let sourceType:UIImagePickerController.SourceType = UIImagePickerController.SourceType.photoLibrary
 
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
-            //インスタンスの作成
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
@@ -539,7 +520,6 @@ class ViewController: UIViewController
             //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
             UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
             
-            updateScrollInset()
 
             //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
             dismiss(animated: true, completion: nil)
@@ -548,35 +528,19 @@ class ViewController: UIViewController
         else {
             //for photolibrary
             let assetURL:AnyObject = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)]! as AnyObject
-            if Constants.DEBUG == true {
-                print("didFinishPickingMediaWithInfo")
-                print(assetURL) //assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG
-            }
 
             let strURL:String = assetURL.description
-            if Constants.DEBUG == true {
-                print("----  ")
-                print(strURL) //assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG
-            }
-            
-            // ユーザーデフォルトを用意する
             let myDefault = UserDefaults.standard
             
-            // データを書き込んで
             myDefault.set(strURL, forKey: "selectedPhotoURL")
             
-            // 即反映させる
             myDefault.synchronize()
             
             
-           // display()  画質が悪くなるので削除
             let takenimage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
             
-            //画面上のimageViewに設定
             displayImageView.image = takenimage
-            updateScrollInset()
 
-            //閉じる処理
             imagePicker.dismiss(animated: true, completion: nil)
         }
         imageViewSetting()
@@ -585,7 +549,7 @@ class ViewController: UIViewController
     
 
     //==============================
-    // ScrolView
+    // MARK:ScrolView
     //==============================
     func initScrollImage() {
         if Constants.DEBUG == true {
@@ -598,8 +562,7 @@ class ViewController: UIViewController
         
         myScrollView.delegate = self
         myScrollView.addSubview(displayImageView)
-        // 初期表示のためcontentInsetを更新
-        updateScrollInset()
+
 
     }
     
@@ -611,7 +574,6 @@ class ViewController: UIViewController
         myScrollView.zoomScale = 1
         
         if let size = displayImageView.image?.size {
-            print(size)
             // imageViewのサイズがscrollView内に収まるように調整
             let wrate = myScrollView.frame.width / size.width
             let hrate = myScrollView.frame.height / size.height
@@ -619,10 +581,7 @@ class ViewController: UIViewController
             if onetime == false {
                 rate = wrate
             }
-            if Constants.DEBUG == true {
-                print("w:r=\(wrate):\(hrate) -> \(rate)")
-            }
-            
+ 
             let newImageWidth = size.width * rate
             displayImageView.frame.size = CGSize(width: newImageWidth , height: size.height * rate)
             
@@ -632,66 +591,11 @@ class ViewController: UIViewController
             // contentSizeははみ出すサイズなので、画像サイズに設定
             myScrollView.contentSize = displayImageView.frame.size
 
-            
-            if Constants.DEBUG == true {
-                print(displayImageView.frame)
-                print(myScrollView.contentSize)
-                print(myScrollView.frame)
-                print(myScrollView.zoomScale)
-            }
 
         }
     }
     
-    func updateScrollInset()
-    {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-        
-        // imageViewの大きさからcontentInsetを再計算 iOS11では不要
-        // 0を下回らないようにする
-//        myScrollView.contentInset = UIEdgeInsetsMake(
-//            max((myScrollView.frame.height - displayImageView.frame.height)/2, 0)
-//            ,max((myScrollView.frame.width - displayImageView.frame.width)/2, 0)
-//            , 0
-//            , 0
-//        )
-        
-        if Constants.DEBUG == true {
-            print(displayImageView.frame)
-            print(myScrollView.frame)
-            print(myScrollView.contentInset)
-            print(myScrollView.contentSize)
-            print(myScrollView.contentOffset)
-            print("frame,contentInset,contentSize,contentOffset")
-        }
-
-    }
-    
-    // スクロール中に呼び出され続けるデリゲートメソッド.
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-    }
-    
-    // ズーム中に呼び出され続けるデリゲートメソッド.
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-        updateScrollInset()
-    }
-    
-    // ユーザが指でドラッグを開始した場合に呼び出されるデリゲートメソッド.
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-        
-    }
-    
+   
     // ユーザがドラッグ後、指を離した際に呼び出されるデリゲートメソッド.
     // velocity = points / second.
     // targetContentOffsetは、停止が予想されるポイント？
@@ -742,50 +646,11 @@ class ViewController: UIViewController
     // ズームの値に対応したUIViewを返却する.
     // nilを返却すると、何も起きない.
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
         return self.displayImageView
     }
-    
-    // ズーム開始時に呼び出されるデリゲートメソッド.
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-    }
-    
-    // ズーム完了時(バウンドアニメーション完了時)に呼び出されるデリゲートメソッド.
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-    }
-    
-    // 先頭にスクロールする際に呼び出されるデリゲートメソッド.
-    // NOなら反応しない.
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-        return true
-    }
-    
-    // 先頭へのスクロールが完了した際に呼び出されるデリゲートメソッド.
-    // すでに先頭にいる場合には呼び出されない.
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-    }
-    
-    
+
     //ズームのために要指定
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        if Constants.DEBUG == true {
-            print(#function)
-        }
-        // ズームのために要指定
         return displayImageView
     }
     
@@ -796,11 +661,8 @@ class ViewController: UIViewController
         let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
         let soundClear = URL(fileURLWithPath: soundFile )
         
-        //AVAudioPlayerのインスタンス化
         do {
             apCat1 = try AVAudioPlayer(contentsOf: soundClear as URL)
-            
-            
         }catch{
             print("Failed AVAudioPlayer Instance")
         }
@@ -812,11 +674,8 @@ class ViewController: UIViewController
         let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
         let soundClear = URL(fileURLWithPath: soundFile )
         
-        //AVAudioPlayerのインスタンス化
         do {
             apCat2 = try AVAudioPlayer(contentsOf: soundClear as URL)
-            
-            
         }catch{
             print("Failed AVAudioPlayer Instance")
         }
@@ -827,11 +686,8 @@ class ViewController: UIViewController
         let soundFile = Bundle.main.path(forResource: audioFileName, ofType: nil)!
         let soundClear = URL(fileURLWithPath: soundFile )
         
-        //AVAudioPlayerのインスタンス化
         do {
             apCat3 = try AVAudioPlayer(contentsOf: soundClear as URL)
-            
-            
         }catch{
             print("Failed AVAudioPlayer Instance")
         }

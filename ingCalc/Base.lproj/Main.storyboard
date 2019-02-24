@@ -42,50 +42,51 @@
                                 </connections>
                             </scrollView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="26" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Bv-jkZ">
-                                <rect key="frame" x="36" y="73" width="268" height="66"/>
+                                <rect key="frame" x="30" y="73" width="274" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="rAq-df-acY"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="268" id="tZ3-IJ-kfY"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="47"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-ad-XTo">
-                                <rect key="frame" x="16" y="72" width="10.5" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-ad-XTo">
+                                <rect key="frame" x="10" y="68.5" width="12.5" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-vC-DCN">
-                                        <rect key="frame" x="0.0" y="0.0" width="10.5" height="14"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="12.5" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="qw1-dm-rpA"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="SEr-N8-UKr">
-                                        <rect key="frame" x="0.0" y="14" width="10.5" height="14"/>
+                                        <rect key="frame" x="0.0" y="14" width="12.5" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="qWq-mq-Aa8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="GNG-5e-TA4">
-                                        <rect key="frame" x="0.0" y="28" width="10.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="28" width="12.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="÷" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="11" translatesAutoresizingMaskIntoConstraints="NO" id="AaI-vp-b6a">
-                                        <rect key="frame" x="0.0" y="48" width="10.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="51.5" width="12.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12.5" id="NKQ-LI-CzB"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,10 +96,13 @@
                             <constraint firstItem="7rD-Bv-jkZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="CV2-14-JiZ"/>
                             <constraint firstItem="Cty-1a-cjX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DGY-1D-Pou"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" priority="750" constant="300" id="Fzw-Ra-Szw"/>
+                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="leading" secondItem="3qg-ad-XTo" secondAttribute="trailing" constant="7.5" id="Ka1-qu-SJu"/>
                             <constraint firstItem="Cty-1a-cjX" firstAttribute="top" secondItem="7rD-Bv-jkZ" secondAttribute="bottom" constant="8" id="PmD-mM-iOc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Cty-1a-cjX" secondAttribute="bottom" priority="750" constant="280" id="a3Q-9w-80Q"/>
                             <constraint firstItem="Cty-1a-cjX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bTv-Nf-7qq"/>
                             <constraint firstAttribute="trailing" secondItem="Cty-1a-cjX" secondAttribute="trailing" id="jg0-tN-B1K"/>
+                            <constraint firstItem="7rD-Bv-jkZ" firstAttribute="centerY" secondItem="3qg-ad-XTo" secondAttribute="centerY" id="tPR-3f-80v"/>
+                            <constraint firstItem="3qg-ad-XTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="tum-0R-W2e"/>
                             <constraint firstItem="7rD-Bv-jkZ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="wFv-Lc-WZh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -140,7 +144,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" allowableMovement="10" minimumPressDuration="1" id="WK8-Ov-kR1">
+                <pongPressGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" allowableMovement="10" minimumPressDuration="0.5" id="WK8-Ov-kR1">
                     <connections>
                         <action selector="longPressImageView:" destination="BYZ-38-t0r" id="B8N-nv-cxM"/>
                     </connections>
