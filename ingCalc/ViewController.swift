@@ -12,7 +12,6 @@ import UIKit
 import Photos               // 写真用
 import CoreData
 import AVFoundation
-import FontAwesome_swift
 import AppTrackingTransparency
 import AdSupport
 import FirebaseAnalytics
@@ -40,8 +39,7 @@ class ViewController: UIViewController
     @IBOutlet weak var divideLabel: UILabel!
 
     
-    @IBOutlet weak var cameraBarButton: FontAwesomeBarButtonItem!
-    @IBOutlet weak var historyBarButton: FontAwesomeBarButtonItem!
+    @IBOutlet weak var cameraBarButton: UIBarButtonItem!
     
     // 計算機
     var keyboard:CalculatorKeyboard = CalculatorKeyboard()
@@ -99,9 +97,6 @@ class ViewController: UIViewController
         
         adustConstrains()
         
-        historyBarButton.title = String.fontAwesomeIcon(name: .history)
-        cameraBarButton.title = String.fontAwesomeIcon(name: .camera)
-
         
     }
 

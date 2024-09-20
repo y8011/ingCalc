@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMobileAds      // Admob
-import FontAwesome_swift
 
 class pictureViewController: UIViewController
     ,UIScrollViewDelegate
@@ -23,7 +22,7 @@ class pictureViewController: UIViewController
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myNavigationBar: UINavigationBar!
     
-    @IBOutlet weak var shareBarButton: FontAwesomeBarButtonItem!
+    @IBOutlet weak var shareBarButton: UIBarButtonItem!
     
     var bannerView: GADBannerView!
 
@@ -36,7 +35,6 @@ class pictureViewController: UIViewController
             = [NSAttributedString.Key.font: UIFont(name: "Menlo", size: 16)!]
         
         // Button
-        shareBarButton.title = String.fontAwesomeIcon(name: .shareSquare)
         NSLayoutConstraint.activate([
             myTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
         ])
@@ -94,7 +92,7 @@ class pictureViewController: UIViewController
     //ツールバーの中のシェアボタンが押された時
     @IBAction func tapShare(_ sender: UIBarButtonItem) {
         //シェア用画面（インスタンス）の作成
-        let controller = UIActivityViewController(activityItems: [detailImageView.image!,myTextView.text], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [detailImageView.image!, myTextView.text], applicationActivities: nil)
 
         controller.popoverPresentationController?.sourceView = self.view
         
