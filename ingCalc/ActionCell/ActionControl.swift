@@ -123,7 +123,7 @@ open class TextAction: ActionControl {
             return max(super.width, intrinsicContentSize.width)
         }
         set {
-            super.width = width
+            super.width = newValue
         }
     }
     
@@ -171,7 +171,7 @@ open class IconTextAction: ActionControl {
             return max(super.width, intrinsicContentSize.width)
         }
         set {
-            super.width = width
+            super.width = newValue
         }
     }
     

@@ -36,6 +36,9 @@ class RirekiViewController: UIViewController
         myTableView.dataSource = self
         myTableView.delegate   = self
         myTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cellta")
+        NSLayoutConstraint.activate([
+            myTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        ])
         
         // Admob
         showAdBanner()
@@ -222,32 +225,18 @@ class RirekiViewController: UIViewController
     func showAdBanner() {
         //バナー用のビューを作成
         //  kGADAdSizeBannerは決まっているサイズ
-//        var admobView = GADBannerView()
-//        admobView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
 
         addBannerViewToView(bannerView)
     }
     
     func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: bottomLayoutGuide,
-                                attribute: .top,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     
@@ -266,6 +255,7 @@ class RirekiViewController: UIViewController
         bannerView.delegate = self
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
+        
     }
 
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
@@ -346,6 +336,7 @@ class CustomTableViewCell: UITableViewCell {
             
             return the
         }()
+        guard let button = button  else { return }
         contentView.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0))

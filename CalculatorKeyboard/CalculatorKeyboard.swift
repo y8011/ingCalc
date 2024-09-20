@@ -11,7 +11,7 @@ import UIKit
 
 public var btn4cnt:Int = -1  //okayu四則演算が連続で呼ばれているかの確認用
 
-public protocol CalculatorDelegate: class {
+public protocol CalculatorDelegate: AnyObject {
     func calculator(_ calculator: CalculatorKeyboard, didChangeValue value: String, KeyType:Int)
     
     func confirmZero(_ op:CalculatorKey?)

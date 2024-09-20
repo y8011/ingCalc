@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 //import Antenna
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Antenna.sharedLogger()?.log("didFinishLaunchingWithOptions")
 
         FirebaseApp.configure()
-        GADMobileAds.configure(withApplicationID: AdMobID)
-        print("didFinishLaunchingWithOptions")
         return true
     }
 

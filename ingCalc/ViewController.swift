@@ -13,6 +13,10 @@ import Photos               // 写真用
 import CoreData
 import AVFoundation
 import FontAwesome_swift
+import AppTrackingTransparency
+import AdSupport
+import FirebaseAnalytics
+import GoogleMobileAds
 
 var iphoneType:String = ""
 var widthOfScreen:CGFloat = 0
@@ -98,7 +102,31 @@ class ViewController: UIViewController
         historyBarButton.title = String.fontAwesomeIcon(name: .history)
         cameraBarButton.title = String.fontAwesomeIcon(name: .camera)
 
+        
     }
+
+    func requestIDFA() {
+        ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+
+            switch status {
+                case .authorized:
+                    Analytics.setUserProperty("true", forName: AnalyticsUserPropertyAllowAdPersonalizationSignals)
+                case .denied:
+                    Analytics.setUserProperty("false", forName: AnalyticsUserPropertyAllowAdPersonalizationSignals)
+                case .restricted:
+                    Analytics.setUserProperty("false", forName: AnalyticsUserPropertyAllowAdPersonalizationSignals)
+                case .notDetermined:
+                    Analytics.setUserProperty("false", forName: AnalyticsUserPropertyAllowAdPersonalizationSignals)
+                default:
+                    Analytics.setUserProperty("false", forName: AnalyticsUserPropertyAllowAdPersonalizationSignals)
+                
+            }
+            Analytics.setAnalyticsCollectionEnabled(true)
+
+        })
+    }
+
 
     
     //===============================
@@ -113,6 +141,8 @@ class ViewController: UIViewController
             onetime = true
         }
         inputText.becomeFirstResponder()   //計算機
+        requestIDFA()
+
     }
 
     //==============================

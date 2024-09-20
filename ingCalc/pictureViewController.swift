@@ -25,25 +25,25 @@ class pictureViewController: UIViewController
     
     @IBOutlet weak var shareBarButton: FontAwesomeBarButtonItem!
     
+    var bannerView: GADBannerView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //背景色
-        detailScrollView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
-        myTextView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 225/255, alpha:1)
-        detailImageView.isUserInteractionEnabled = true  // Gestureの許可
 
+        detailImageView.isUserInteractionEnabled = true  // Gestureの許可
+        myTextView.textColor = .black
         myNavigationBar.titleTextAttributes
             = [NSAttributedString.Key.font: UIFont(name: "Menlo", size: 16)!]
         
         // Button
-//        let attributes = [NSAttributedString.Key.font: UIFont.fontAwesome(ofSize: 10, style: .brands)]
-//        shareBarButton.setTitleTextAttributes(attributes, for: .normal)
-//        shareBarButton.title = String.fontAwesomeIcon(name: .share)
         shareBarButton.title = String.fontAwesomeIcon(name: .shareSquare)
+        NSLayoutConstraint.activate([
+            myTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        ])
+
         // Admob
         showAdBanner()
-        
+        admobInit()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -277,47 +277,38 @@ class pictureViewController: UIViewController
     func showAdBanner() {
         //バナー用のビューを作成
         //  kGADAdSizeBannerは決まっているサイズ
-        var admobView = GADBannerView()
-        admobView = GADBannerView(adSize: kGADAdSizeBanner)
-        
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+
         //バナーを下に配置
-        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - admobView.frame.height)
+//        admobView.frame.origin = CGPoint(x: 0, y: view.frame.size.height - 50)
         
         //バナーの横幅をデバイスと合わせる
-        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
-        admobView.adUnitID = AdMobID
-        admobView.rootViewController = self
-        
-        //各種設定
-        admobView.adUnitID = AdMobID
-        admobView.delegate = self
-        admobView.rootViewController = self
-        
-        //広告のリクエスト
-        //リクエストオブジェクトを出して広告をもらってくる
-        let admobRequest = GADRequest()
-        
-        
-        //テストパターンによって設定を変える
-        if Constants.AdmobTest {
-            if Constants.SimulatorTest {
-                admobRequest.testDevices = [kGADSimulatorID]
-            }
-            else {
-                admobRequest.testDevices = [TEST_DEVICE_ID]
-            }
-        }
-        
-        //リクエストのロード
-        admobView.load(admobRequest)
-        
-        //バナーを画面に追加
-        self.view.addSubview(admobView)
-        
-        
-        
-        
+//        admobView.frame.size = CGSize(width: widthOfScreen, height: admobView.frame.height)
+//        admobView.adUnitID = AdMobID
+//        admobView.rootViewController = self
+
+        self.view.addSubview(bannerView)
+        NSLayoutConstraint.activate([
+            bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//            admobView.topAnchor.constraint(equalTo: myTextView.bottomAnchor)
+        ])
+
     }
+    func admobInit() {
+        bannerView.adUnitID = AdMobID
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+    }
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            bannerView.alpha = 1
+        })
+    }
+    
     
     
     override func didReceiveMemoryWarning() {

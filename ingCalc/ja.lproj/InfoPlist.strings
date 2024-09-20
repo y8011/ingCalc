@@ -9,3 +9,4 @@ CFBundleDisplayName = "ながら電卓";
 NSCameraUsageDescription = "カメラを使って写真を記録しアプリ上に表示します";
 NSPhotoLibraryUsageDescription = "フォトライブラリから選んだ写真をこのアプリ上に表示します";
 NSPhotoLibraryAddUsageDescription = "カメラで撮った写真をフォトライブラリに記録します";
+NSUserTrackingUsageDescription = "この識別子は、人に合わせた広告を配信するために使用されます。";
