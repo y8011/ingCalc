@@ -1,5 +1,5 @@
 {
-  "originHash" : "a77b0b3d6aa6d2c4b27b1b0c8e9691874ca464fd8735a2e1b8a1a6cc55ce8531",
+  "originHash" : "03651f2e356682d9ff3c19f48721f41adee49ee676f5dbdcab8120359ace4980",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,15 +26,6 @@
       "state" : {
         "revision" : "1fc52ab0e172e7c5a961f975a76c2611f4f22852",
         "version" : "11.2.0"
-      }
-    },
-    {
-      "identity" : "fontawesome.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thii/FontAwesome.swift.git",
-      "state" : {
-        "revision" : "07883a32d49dfc7bdedbeea115067b53dfbeeb43",
-        "version" : "1.9.1"
       }
     },
     {

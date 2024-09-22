@@ -115,7 +115,7 @@
                                 <action selector="tapCameraBarButton:" destination="BYZ-38-t0r" id="NBd-Ye-Jdo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="History" image="clock.fill" catalog="system" id="7Pf-SK-IaK" customClass="FontAwesomeBarButtonItem" customModule="FontAwesome_swift">
+                        <barButtonItem key="rightBarButtonItem" title="History" image="clock.fill" catalog="system" id="7Pf-SK-IaK">
                             <color key="tintColor" name="GreyLetterColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="styleName" value="history"/>
@@ -303,7 +303,7 @@
         <image name="clock.fill" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <namedColor name="GreyLetterColor">
-            <color white="0.37265488505363464" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.37299999594688416" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="mainColor">
             <color red="1" green="1" blue="0.88200002908706665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
