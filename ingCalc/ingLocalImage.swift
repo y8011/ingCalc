@@ -9,8 +9,12 @@
 import UIKit
 
 class ingLocalImage {
-    let documentDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) // [String]型
-    
+    private let fileManager = FileManager.default
+    private lazy var documentDirectory: URL = {
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[0]
+    }()
+   
     //=========================
     // JPGをdocumentフォルダへ保存
     //=========================
@@ -18,15 +22,18 @@ class ingLocalImage {
         if Constants.DEBUG == true {
             print(#function)
         }
-        let dataUrl = URL.init(fileURLWithPath: documentDirectory[0], isDirectory: true) //URL型 Documentpath
-        
-        let dataPath = dataUrl.appendingPathComponent(name) //URL型 documentへのパス + ファイル名
-        let myData = image.jpegData(compressionQuality: 1.0)! as NSData // Data?型　→ NSData型
-        
-        if Constants.DEBUG == true {
-            print(dataPath.path)
+        let dataPath = documentDirectory.appendingPathComponent(name)
+        do {
+            if let data = image.jpegData(compressionQuality: 0.8) {
+                try data.write(to: dataPath)
+                print("画像が正常に保存されました: \(dataPath.path)")
+            } else {
+                print("画像データの生成に失敗しました")
+            }
+        } catch {
+            print("画像の保存に失敗しました: \(error.localizedDescription)")
         }
-        myData.write(toFile: dataPath.path , atomically: true) // NSData型の変数.write(String型,Bool型)
+
     }
     
     //=============================
@@ -36,23 +43,20 @@ class ingLocalImage {
         if Constants.DEBUG == true {
             print(#function)
         }
-        let dataUrl = URL.init(fileURLWithPath: documentDirectory[0], isDirectory: true)  //URL型 Documentpath
-        let dataPath = dataUrl.appendingPathComponent(nameOfImage)
+        let dataPath = documentDirectory.appendingPathComponent(nameOfImage)
         
         do {
-            
-            let myData = try Data(contentsOf: dataPath, options: [])
-            let image =  UIImage.init(data: myData)
-            
-            if Constants.DEBUG == true {
-                print(image!)
+            let data = try Data(contentsOf: dataPath)
+            if let image = UIImage(data: data) {
+                return image
+            } else {
+                print("画像データの解析に失敗しました")
+                return nil
             }
-            return image
-            
-        }catch {
-            print(error)
+        } catch {
+            print("画像の読み込みに失敗しました: \(error.localizedDescription)")
             return nil
-        }
+        }        
         
     }
 
@@ -63,17 +67,9 @@ class ingLocalImage {
         if Constants.DEBUG == true {
             print(#function)
         }
-        let dataUrl = URL.init(fileURLWithPath: documentDirectory[0], isDirectory: true)  //URL型 Documentpath
-        let dataPath = dataUrl.appendingPathComponent(nameOfImage)
-        
+        let dataPath = documentDirectory.appendingPathComponent(nameOfImage)
         
         do {
-            let fileManager = FileManager.default
-            // Check if file exists
-            if Constants.DEBUG == true {
-                print("filePath")
-                print(dataPath.path)
-            }
             if fileManager.fileExists(atPath: dataPath.path) {
                 // Delete file
                 try fileManager.removeItem(atPath: dataPath.path)
