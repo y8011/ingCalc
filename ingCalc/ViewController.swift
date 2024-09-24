@@ -497,7 +497,9 @@ class ViewController: UIViewController
                         style: .default,
                         handler: {
                             (action) in
-                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                            if let url = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                            }
                         })
                 )
                 present(alert, animated: true, completion: nil)
@@ -524,52 +526,21 @@ class ViewController: UIViewController
 
 
     //カメラロールで写真を選んだ後発動
-    func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // Local variable inserted by Swift 4.2 migrator.
-        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-
-        if Constants.DEBUG == true {
-            print(#function)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            print("画像の取得に失敗しました")
+            picker.dismiss(animated: true)
+            return
         }
+        displayImageView.image = image
 
-        //for camera
-        // UIImagePickerControllerReferenceURL はカメラロールを選択した時だけ存在するので切り分け。
-        if (info.index(forKey: convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)) == nil) {
-            //imageViewに撮影した写真をセットするために変数に保存する
-            let takenimage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
-            
-            //画面上のimageViewに設定
-            displayImageView.image = takenimage
-            
-            //自分のデバイス（プログラムが動いている場所）に写真を保存（カメラロール）
-            UIImageWriteToSavedPhotosAlbum(takenimage, nil, nil, nil)
-            
-
-            //モーダルで表示した撮影モード画面を閉じる（前の画面に戻る）
-            dismiss(animated: true, completion: nil)
-            
-        }
-        else {
-            //for photolibrary
-            let assetURL:AnyObject = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)]! as AnyObject
-
-            let strURL:String = assetURL.description
-            let myDefault = UserDefaults.standard
-            
-            myDefault.set(strURL, forKey: "selectedPhotoURL")
-            
-            myDefault.synchronize()
-            
-            
-            let takenimage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
-            
-            displayImageView.image = takenimage
-
-            imagePicker.dismiss(animated: true, completion: nil)
+        if info[.mediaType] as? String == UTType.image.identifier {
+            // カメラで撮影した場合
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
         imageViewSetting()
         
+        dismiss(animated: true, completion: nil)
     }
     
 
