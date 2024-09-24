@@ -327,6 +327,7 @@ class ViewController: UIViewController
         keyboard.delegate = self
         keyboard.showDecimal = true
         inputText.inputView = keyboard
+        inputText.tintColor = .clear
         
         hideOpeLabel()
     }
