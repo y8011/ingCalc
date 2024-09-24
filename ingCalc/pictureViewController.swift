@@ -92,7 +92,17 @@ class pictureViewController: UIViewController
     //ツールバーの中のシェアボタンが押された時
     @IBAction func tapShare(_ sender: UIBarButtonItem) {
         //シェア用画面（インスタンス）の作成
-        let controller = UIActivityViewController(activityItems: [detailImageView.image!, myTextView.text], applicationActivities: nil)
+        var activityItems: [Any] = []
+
+        if let image = detailImageView.image {
+            activityItems.append(image)
+        }
+
+        if let text = myTextView.text, !text.isEmpty {
+            activityItems.append(text)
+        }
+
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
 
         controller.popoverPresentationController?.sourceView = self.view
         
