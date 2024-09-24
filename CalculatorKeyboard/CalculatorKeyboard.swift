@@ -97,6 +97,12 @@ open class CalculatorKeyboard: UIView {
     open override func awakeFromNib() {
         super.awakeFromNib()
         adjustLayout()
+        adjustForSafeArea()
+    }
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        adjustForSafeArea()
     }
     
     fileprivate func loadXib() {
@@ -104,6 +110,7 @@ open class CalculatorKeyboard: UIView {
         view.frame = bounds
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         adjustLayout()
+        adjustForSafeArea()
         addSubview(view)
     }
     
@@ -143,6 +150,29 @@ open class CalculatorKeyboard: UIView {
         }
     }
     
+    private func adjustForSafeArea() {
+        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        let bottomPadding = window?.safeAreaInsets.bottom ?? 0
+        
+        // キーボードの高さを調整
+        frame.size.height += bottomPadding
+        
+        // 最下段のボタンの位置を調整
+        zeroDistanceConstraint.constant += bottomPadding
+        
+        // その他のボタンの位置も必要に応じて調整
+        for i in 1...CalculatorKey.equal.rawValue {
+            if let button = self.view.viewWithTag(i) as? UIButton {
+                var frame = button.frame
+                frame.origin.y -= bottomPadding
+                button.frame = frame
+            }
+        }
+        
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+
     fileprivate func adjustButtonConstraint() {
         let width = UIScreen.main.bounds.width / 4.0
         zeroDistanceConstraint.constant = showDecimal ? width + 2.0 : 1.0
