@@ -109,7 +109,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hGs-88-gYq">
-                        <barButtonItem key="leftBarButtonItem" title="Camera" image="camera.fill" catalog="system" style="plain" id="hbt-wi-RAR">
+                        <barButtonItem key="leftBarButtonItem" title="Camera" image="camera.fill" catalog="system" style="done" id="hbt-wi-RAR">
                             <color key="tintColor" name="GreyLetterColor"/>
                             <connections>
                                 <action selector="tapCameraBarButton:" destination="BYZ-38-t0r" id="NBd-Ye-Jdo"/>
