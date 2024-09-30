@@ -31,17 +31,22 @@ class pictureViewController: UIViewController
 
         detailImageView.isUserInteractionEnabled = true  // Gestureの許可
         myTextView.textColor = .black
+        myTextView.isScrollEnabled = true
         myNavigationBar.titleTextAttributes
             = [NSAttributedString.Key.font: UIFont(name: "Menlo", size: 16)!]
-        
-        // Button
-        NSLayoutConstraint.activate([
-            myTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
-        ])
 
         // Admob
         showAdBanner()
         admobInit()
+
+        // StoryBoardでエラー対策で設定した高さ制約をいったん削除してから
+        // コードで追加したbannerViewのtopに合わせる制約を追加
+        if let heightConstraint = myTextView.constraints.first(where: { $0.firstAttribute == .height }) {
+            myTextView.removeConstraint(heightConstraint)
+        }
+        NSLayoutConstraint.activate([
+            myTextView.bottomAnchor.constraint(lessThanOrEqualTo: bannerView.topAnchor, constant: -8)
+        ])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -299,8 +304,8 @@ class pictureViewController: UIViewController
         self.view.addSubview(bannerView)
         NSLayoutConstraint.activate([
             bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//            admobView.topAnchor.constraint(equalTo: myTextView.bottomAnchor)
+            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bannerView.topAnchor.constraint(equalTo: myTextView.bottomAnchor)
         ])
 
     }
