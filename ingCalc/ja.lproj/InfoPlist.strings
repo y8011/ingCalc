@@ -6,7 +6,7 @@
   Copyright © 2017年 yuka. All rights reserved.
 */
 CFBundleDisplayName = "ながら電卓";
-NSCameraUsageDescription = "カメラを使って写真を記録しアプリ上に表示します";
-NSPhotoLibraryUsageDescription = "フォトライブラリから選んだ写真をこのアプリ上に表示します";
-NSPhotoLibraryAddUsageDescription = "カメラで撮った写真をフォトライブラリに記録します";
+NSCameraUsageDescription = "カメラで撮影したレシートなどを見ながら計算するために使います。撮影した写真は電卓内に表示します。";
+NSPhotoLibraryUsageDescription = "見ながら計算するための写真を選択してください。電卓内に表示します。";
+NSPhotoLibraryAddUsageDescription = "カメラで撮った写真をライブラリに追加します。";
 NSUserTrackingUsageDescription = "この識別子は、人に合わせた広告を配信するために使用されます。";

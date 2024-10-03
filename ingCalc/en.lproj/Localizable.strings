@@ -6,7 +6,7 @@
   Copyright © 2019 yuka. All rights reserved.
 */
 
-"CameraErrorMessage" = "Camera is unavailable. Try to change setting of SnapCalendar.";
+"CameraErrorMessage" = "Camera is unavailable. Try to change setting of ingCal.";
 "Setting" = "Go to Setting";
 "cancel"     = "cancel";
 "zeroConfirmation" = "is used by Zero. Do you want to continue?";

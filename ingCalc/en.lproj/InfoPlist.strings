@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  ingCalc
+
+  Created by yuka on 2017/12/14.
+  Copyright © 2017年 yuka. All rights reserved.
+*/
+NSCameraUsageDescription = "It is used to calculate while viewing receipts and other items photographed with the camera. The pictures you take will be displayed in the calculator.";
+NSPhotoLibraryUsageDescription = "Select a picture to calculate while viewing. Display within the calculator.";
+NSPhotoLibraryAddUsageDescription = "Add photos taken with the camera to the library.";
+NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";

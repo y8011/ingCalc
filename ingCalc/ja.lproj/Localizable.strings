@@ -6,7 +6,7 @@
   Copyright © 2019 yuka. All rights reserved.
 */
 
-"CameraErrorMessage" = "カメラが起動できませんでした。iPhone/iPadの設定で、SnapCalendar ＞「カメラ」をONしてください";
+"CameraErrorMessage" = "カメラが起動できませんでした。設定で、ながら電卓 ＞ カメラをONしてください";
 "Setting" = "設定へ移動";
 "cancel"     = "やめる";
 "zeroConfirmation" = "：０を使って計算しようとしています。このまま続けて良いですか？";
