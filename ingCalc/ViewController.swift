@@ -535,7 +535,7 @@ class ViewController: UIViewController
         }
         displayImageView.image = image
 
-        if info[.mediaType] as? String == UTType.image.identifier {
+        if info[.referenceURL] == nil {
             // カメラで撮影した場合
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         }
