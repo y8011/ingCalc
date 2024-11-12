@@ -81,9 +81,7 @@ open class CalculatorKeyboard: UIView {
     
     var view: UIView!
     fileprivate var processor = CalculatorProcessor()
-    
-    @IBOutlet weak var zeroDistanceConstraint: NSLayoutConstraint!
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadXib()
@@ -118,15 +116,10 @@ open class CalculatorKeyboard: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "CalculatorKeyboard", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        adjustButtonConstraint()
         return view
     }
     
     fileprivate func adjustLayout() {
-        if viewWithTag(CalculatorKey.decimal.rawValue) != nil {
-            adjustButtonConstraint()
-        }
-        
         for i in 1...CalculatorKey.decimal.rawValue {
             if let button = self.view.viewWithTag(i) as? UIButton {
                 button.tintColor = numbersBackgroundColor
@@ -148,6 +141,7 @@ open class CalculatorKeyboard: UIView {
             button.tintColor = equalBackgroundColor
             button.setTitleColor(equalTextColor, for: UIControl.State())
         }
+        layoutIfNeeded()
     }
     
     private func adjustForSafeArea() {
@@ -156,9 +150,6 @@ open class CalculatorKeyboard: UIView {
         
         // キーボードの高さを調整
         frame.size.height += bottomPadding
-        
-        // 最下段のボタンの位置を調整
-        zeroDistanceConstraint.constant += bottomPadding
         
         // その他のボタンの位置も必要に応じて調整
         for i in 1...CalculatorKey.equal.rawValue {
@@ -173,12 +164,6 @@ open class CalculatorKeyboard: UIView {
         layoutIfNeeded()
     }
 
-    fileprivate func adjustButtonConstraint() {
-        let width = UIScreen.main.bounds.width / 4.0
-        zeroDistanceConstraint.constant = showDecimal ? width + 2.0 : 1.0
-        layoutIfNeeded()
-    }
-    
     @IBAction func buttonPressed(_ sender: UIButton) {
         switch (sender.tag) {
         case (CalculatorKey.zero.rawValue)...(CalculatorKey.nine.rawValue):
